@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Major Module Test | Stone Paper Scissor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="banner">
+        <div class="heading">
+          <p>ROCK</p>
+          <p>PAPER</p>
+          <p>SCISSORS</p>
+        </div>
+        <div class="score_box">
+          <div class="score_disp">
+            <p>COMPUTER</p>
+            <p>SCORE</p>
+            <div class="comp point" id="computer-score">0</div>
+          </div>
+          <div class="score_disp">
+            <p>YOUR</p>
+            <p>SCORE</p>
+            <div class="user point" id="user-score">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="rule_box" id="rule_box">
+        <div class="cut" id="cut">
+          <img class="img1" src="./image/Ellipse 6.png" alt="" />
+          <img src="./image/X.png" alt="" class="text" />
+        </div>
+        <h3>Game Rules</h3>
+        <div class="rule">
+          <img src="./image/Rectangle 5.png" alt="" />
+          <p>Rock beats scissors, scissors beat paper, and paper beats rock.</p>
+        </div>
+        <div class="rule">
+          <img src="./image/Rectangle 5.png" alt="" />
+          <p>
+            Agree ahead of time whether you’ll count off “rock, paper, scissors,
+            shoot” or just “rock, paper, scissors.”
+          </p>
+        </div>
+        <div class="rule">
+          <img src="./image/Rectangle 5.png" alt="" />
+          <p>
+            Use rock, paper, scissors to settle minor decisions or simply play
+            to pass the time
+          </p>
+        </div>
+        <div class="rule">
+          <img src="./image/Rectangle 5.png" alt="" />
+          <p>
+            If both players lay down the same hand, each player lays down
+            another hand
+          </p>
+        </div>
+      </div>
+      <div class="play_area" id="play-board">
+        <div class="opt">
+          <span id="rock" class="dot fist rock-div" onclick="start('rock')"
+            ><img src="./image/rock.png" alt=""
+          /></span>
+        </div>
+        <img class="line1" src="./image/Line 1.png" alt="" />
+        <div class="opt">
+          <span
+            id="scissor"
+            class="dot sci scissor-div"
+            onclick="start('scissor')"
+            ><img src="./image/scissor.png" alt=""
+          /></span>
+        </div>
+        <img src="./image/Line 2.png" alt="" class="line2" />
+        <img src="./image/Line 3.png" alt="" class="line3" />
+        <div class="opt">
+          <span id="paper" class="paper-div dot paper" onclick="start('paper')"
+            ><img src="./image/paper.png" alt=""
+          /></span>
+        </div>
+      </div>
+
+      <div id="result-board">
+        <div class="boxes user-box-1">
+          <div class="boxes user-box-2">
+            <div class="boxes user-box-3">
+              <div id="you-picked" class="picked-div">
+                <h3 class="picked">You Picked</h3>
+                <div class="result-img dot user-result"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result">
+          <p id="result-text-1"></p>
+          <p id="result-text-2">AGAINST PC</p>
+          <button class="filled-btn play-again" id="play-again">
+            play again
+          </button>
+          <button class="filled-btn tie-up" id="replay">replay</button>
+        </div>
+
+        <div class="boxes pc-box-1">
+          <div class="boxes pc-box-2">
+            <div class="boxes pc-box-3">
+              <div id="pc-picked" class="picked-div">
+                <h3 class="picked">PC Picked</h3>
+                <div class="result-img dot pc-result"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="rule_btn btn">RULES</button>
+        <button class="next-btn btn" id="next-btn">next</button>
+      </div>
+
+      <section class="won-game">
+        <img src="./image/Group 5.png" alt="stars" id="stars" />
+        <img src="./image/Vector.png" alt="VectorTrophy" id="trophy" />
+        <h2 class="won-game-heading">HURRAY!!</h2>
+        <h6 class="won-game-sub-heading">YOU WON THE GAME</h6>
+        <button class="filled-btn large" onclick="playAgain()">
+          play again
+        </button>
+      </section>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
