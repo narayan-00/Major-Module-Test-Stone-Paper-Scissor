@@ -1,5 +1,7 @@
 const rulesButton = document.querySelectorAll(".rule_btn");
 const nextButton = document.getElementById("next-btn");
+const computerScore = document.getElementById("computer-score");
+const userScore = document.getElementById("user-score");
 const playAgainBtn = document.querySelector("#play-again");
 const replayBtn = document.querySelector("#replay");
 const close = document.getElementById("cut");
@@ -13,12 +15,18 @@ const playBoard = document.getElementById("play-board");
 const resultBoard = document.getElementById("result-board");
 const userResult = document.querySelector(".user-result");
 const pcResult = document.querySelector(".pc-result");
+
 let resultText = document.getElementById("result-text-1");
 let resultText2 = document.getElementById("result-text-2");
 let picked = document.querySelectorAll(".picked");
 
-const computerScore = document.getElementById("computer-score");
-const userScore = document.getElementById("user-score");
+let pc_Win_Box1 = document.querySelector(".p_box_1");
+let pc_Win_Box2 = document.querySelector(".p_box_2");
+let pc_Win_Box3 = document.querySelector(".p_box_3");
+
+let user_Win_Box1 = document.querySelector(".u_box_1");
+let user_Win_Box2 = document.querySelector(".u_box_2");
+let user_Win_Box3 = document.querySelector(".u_box_3");
 
 let score = {
   user: 0,
@@ -98,18 +106,36 @@ function setStyles() {
     nextButton.style.display = "none";
   }
 }
+let focus_User_Winner = () => {
+  pc_Win_Box1.classList.remove("box_1_won");
+  pc_Win_Box2.classList.remove("box_2_won");
+  pc_Win_Box3.classList.remove("box_3_won");
 
-const start = (userPicked) => {
+  user_Win_Box1.classList.add("box_1_won");
+  user_Win_Box2.classList.add("box_2_won");
+  user_Win_Box3.classList.add("box_3_won");
+};
+
+let focus_PC_Winner = () => {
+  user_Win_Box1.classList.remove("box_1_won");
+  user_Win_Box2.classList.remove("box_2_won");
+  user_Win_Box3.classList.remove("box_3_won");
+
+  pc_Win_Box1.classList.add("box_1_won");
+  pc_Win_Box2.classList.add("box_2_won");
+  pc_Win_Box3.classList.add("box_3_won");
+};
+const start = (user_Picked) => {
   let pcPicked = computerPicked();
 
   setStyles();
 
   let res;
 
-  if (userPicked === pcPicked) {
+  if (user_Picked === pcPicked) {
     res = result.TIEUP;
 
-    removeFocus();
+    remove_Focus();
 
     playAgainBtn.style.display = "none";
     replayBtn.style.display = "block";
@@ -121,30 +147,30 @@ const start = (userPicked) => {
 
     resultBoard.style.marginTop = "6rem";
   } else if (
-    (userPicked === "rock" && pcPicked === "scissors") ||
-    (userPicked === "paper" && pcPicked === "rock") ||
-    (userPicked === "scissors" && pcPicked === "paper")
+    (user_Picked === "rock" && pcPicked === "scissors") ||
+    (user_Picked === "paper" && pcPicked === "rock") ||
+    (user_Picked === "scissors" && pcPicked === "paper")
   ) {
     res = result.WIN;
 
     nextButton.style.display = "block";
 
-    focusOnUserWinner();
+    focus_User_Winner();
 
     score.user++;
   } else {
     res = result.LOST;
 
-    focusOnPCWinner();
+    focus_PC_Winner();
 
     score.computer++;
   }
   playBoard.style.display = "none";
   resultBoard.style.display = "flex";
 
-  userResult.classList.add(`${userPicked}-div`);
+  userResult.classList.add(`${user_Picked}-div`);
   pcResult.classList.add(`${pcPicked}-div`);
-  userResult.innerHTML = setImg(userPicked);
+  userResult.innerHTML = setImg(user_Picked);
   pcResult.innerHTML = setImg(pcPicked);
   resultText.innerHTML = res;
 
@@ -154,38 +180,12 @@ const start = (userPicked) => {
   localStorage.setItem("score", JSON.stringify(score));
 };
 
-let winUserBox1 = document.querySelector(".user-box-1");
-let winUserBox2 = document.querySelector(".user-box-2");
-let winUserBox3 = document.querySelector(".user-box-3");
-let winPcBox1 = document.querySelector(".pc-box-1");
-let winPcBox2 = document.querySelector(".pc-box-2");
-let winPcBox3 = document.querySelector(".pc-box-3");
+let remove_Focus = () => {
+  user_Win_Box1.classList.remove("box_1_won");
+  user_Win_Box2.classList.remove("box_2_won");
+  user_Win_Box3.classList.remove("box_3_won");
 
-let focusOnUserWinner = () => {
-  winPcBox1.classList.remove("winner-box-1");
-  winPcBox2.classList.remove("winner-box-2");
-  winPcBox3.classList.remove("winner-box-3");
-
-  winUserBox1.classList.add("winner-box-1");
-  winUserBox2.classList.add("winner-box-2");
-  winUserBox3.classList.add("winner-box-3");
-};
-let focusOnPCWinner = () => {
-  winUserBox1.classList.remove("winner-box-1");
-  winUserBox2.classList.remove("winner-box-2");
-  winUserBox3.classList.remove("winner-box-3");
-
-  winPcBox1.classList.add("winner-box-1");
-  winPcBox2.classList.add("winner-box-2");
-  winPcBox3.classList.add("winner-box-3");
-};
-
-let removeFocus = () => {
-  winUserBox1.classList.remove("winner-box-1");
-  winUserBox2.classList.remove("winner-box-2");
-  winUserBox3.classList.remove("winner-box-3");
-
-  winPcBox1.classList.remove("winner-box-1");
-  winPcBox2.classList.remove("winner-box-2");
-  winPcBox3.classList.remove("winner-box-3");
+  pc_Win_Box1.classList.remove("box_1_won");
+  pc_Win_Box2.classList.remove("box_2_won");
+  pc_Win_Box3.classList.remove("box_3_won");
 };

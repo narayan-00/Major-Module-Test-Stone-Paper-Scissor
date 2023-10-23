@@ -461,15 +461,15 @@ body {
 .boxes {
   border-radius: 50%;
 }
-.winner-box-3 {
+.box_3_won {
   padding: 2rem;
   background-color: #289a27;
 }
-.winner-box-2 {
+.box_2_won {
   padding: 2rem;
   background-color: #32a62f;
 }
-.winner-box-1 {
+.box_1_won {
   padding: 1.5rem;
   background: #66b248;
   box-shadow: 0px 1px 62px rgba(0, 0, 0, 0.13);
